@@ -1,0 +1,2 @@
+# CLI for Palworld Administrators
+ _Note: Broadcast message currently broken on Palworld's end. Messages grouped with `""` or ` `` ` will not send the full message. It is recommended to use hyphens or underscores to link words together._
