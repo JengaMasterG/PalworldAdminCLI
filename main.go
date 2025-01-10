@@ -65,9 +65,9 @@ func main() {
 	case "shutdown":
 		switch arg1 {
 		case "now":
-			response = `===STARTING FORCE SHUTDOWN OF SERVER===\n` + palwrldcmdsgo.DoExit(IPAddress, password) + `===FORCE SHUTDOWN COMPLETE=== Please stop the systemd service to stop a server restart.`
+			response = `===STARTING FORCE SHUTDOWN OF SERVER===\n` + palwrldcmdsgo.DoExit(IPAddress, password) + `===FORCE SHUTDOWN COMPLETE=== Please stop the systemd service to stop a server restart.\n`
 		default:
-			response = palwrldcmdsgo.Shutdown(IPAddress, password, arg1, arg2) + `Note: Please stop the systemd srevice to stop a server restart.`
+			response = palwrldcmdsgo.Shutdown(IPAddress, password, arg1, arg2) + `Note: Please stop the systemd service to stop a server restart.\n`
 		}
 	case "teleporttome":
 		response = "Can only be done by an admin playing the game."
