@@ -4,12 +4,11 @@
 - [Requirements](#requirements)
 - [Setup](#setup)
     1. [Download the source](#1-download-the-source)
-    2. [Set Variables](#2-set-variables)
-    3. [Compiling](#3-compiling)
+    2. [Compiling](#2-compiling)
 - [Usage](#usage)
     - [Command List](#command-list)
 ## Requirements
- - Go version 1.21 or newer
+ - Go version 1.23 or newer
  - A Palworld server with RCON enabled
  - Know the IP address and RCON port
 
@@ -19,12 +18,9 @@
 
 Download the zip from GitHub, and extract it.
 
-#### 2. Set Variables
-Open main.go and replace `"Public_IP:Port", "AdminPassword"` with the IP address, port number, and Admin Password of the Palserver.
-
 _If you do not want to compile the source into a binary, continue at the [Usage](#usage) section._
 
-#### 3. Compiling
+#### 2. Compiling
 Open a console/terminal in the foler you saved the source, then run:
 
 Linux:
@@ -44,26 +40,25 @@ Open a console/terminal in the folder you saved the source, then:
 
 Inside the golang environment, run:
 
-`go run . <command> <args>`
+`go run . <IPAddress:RCONPort> <AdminPassword> <command> [args]`
 
 If the package was built:
 
-Linux: `./palworldcli <command> <args>`
+Linux: `./palworldcli <IPAddress:RCONPort> <AdminPassword> <command> [args]`
 
-Windows: `./palworldcli.exe <command> <args>`
+Windows: `./palworldcli.exe <IPAddress:RCONPort> <AdminPassword> <command> [args]`
 
 ### Command List
-    broadcast <"Message_to_send">
+    broadcast ["Message to send"]
 
-Sends a message out as "SYSTEM" to the palword chat.
+Sends a message out as the **SYSTEM** to the palword chat.
 
- _Note: Broadcast message currently broken on Palworld's end. Messages grouped with `""` or ` `` ` will not send the full message. It is recommended to use hyphens or underscores to link words together._
 
     info
 
 Returns the server information of the Palserver. Information included: Palserver version and name of palserver.
 
-    player ban|kick <steamID>
+    player ban|kick [steamID]
 
 Bans/Kicks the player from the server. The steamID of the player is required to know. Run `showplayers` to get a list of current logged in players and their steamIDs.
 
@@ -75,9 +70,9 @@ Saves the current state of the Palserver to the server's HDD.
 
 Shows the current online players logged into the Palserver.
 
-    shutdown <timer> <message>
+    shutdown [timer] [message]
 
-Gracefully shuts down the Palserver. A timer (seconds) is started before the shutdown begins. The message (string) displays the shutdown notice defined by the command.
+Gracefully shuts down the Palserver. A timer (seconds) is started before the shutdown begins. The message (string) displays the shutdown notice defined by the command. The default timer is 30 seconds.
 
     shutdown now
 

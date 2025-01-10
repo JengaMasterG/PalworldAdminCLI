@@ -1,1 +1,16 @@
-TODO: Create manual page.
+PalworldAdminCLI is a tool for managing a Palworld Server using the Steam RCON protocol.
+
+Usage: 
+        palworldcli <command> [arguments]
+        palworldcli.exe <command> [arguments]
+
+The commands and arguments are:
+
+        broadcast ["Message"]           sends a message to the palworld chat as SYSTEM user
+        info                            returns the server information
+        player ban [steamID]            bans the player from the server
+        player kick [steamID]           kicks the player from the server
+        shutdown [seconds] ["Message"]  gracefully shuts down the server with a timer and message defined
+        shutdown now                    force stops the server
+        teleporttome                    teleports a player to the admin; not available in CLI
+        teleporttoplayer                teleports an admin to a player; not available in CLI
