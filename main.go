@@ -8,34 +8,53 @@ import (
 	"github.com/JengaMasterG/palwrldcmdsgo"
 )
 
-var IPAddress, password = "Public_IP:Port", "AdminPassword"
-
 func main() {
 
-	args := os.Args
+	args := os.Args[1:]
+	argsLen := len(args)
+	IPAddress := ""
+	password := ""
 	command := ""
-	subcommand := ""
+	arg1 := ""
+	arg2 := ""
 	response := ""
 
-	if len(args) > 1 {
-		command = strings.ToLower(os.Args[1])
+	switch argsLen {
+	case 1:
+		if args[0] == "man" || args[0] == "help" {
+			command = args[0]
+		}
+	case 3:
+		IPAddress = args[0]
+		password = args[1]
+		command = strings.ToLower(args[2])
+		fmt.Println(command)
+	case 4:
+		IPAddress = args[0]
+		password = args[1]
+		command = strings.ToLower(args[2])
+		arg1 = args[3]
+	case 5:
+		IPAddress = args[0]
+		password = args[1]
+		command = strings.ToLower(args[2])
+		arg1 = args[3]
+		arg2 = args[4]
+	default:
 	}
 
 	switch command {
 	case "player":
-		if len(args) > 2 {
-			subcommand = strings.ToLower(os.Args[2])
-		}
-		switch subcommand {
+		switch arg1 {
 		case "ban":
-			response = palwrldcmdsgo.BanPlayer(IPAddress, password, os.Args[3])
+			response = palwrldcmdsgo.BanPlayer(IPAddress, password, arg1)
 		case "kick":
-			response = palwrldcmdsgo.KickPlayer(IPAddress, password, os.Args[3])
+			response = palwrldcmdsgo.KickPlayer(IPAddress, password, arg1)
 		default:
 			response = "Usage:\n player ban <steamID>\n player kick <steamID>\nNote: use the showplayers command to view active player's steamIDs."
 		}
 	case "broadcast":
-		palwrldcmdsgo.Broadcast(IPAddress, password, os.Args[2])
+		palwrldcmdsgo.Broadcast(IPAddress, password, arg1)
 		response = "Message Broadcasted on server."
 	case "info":
 		response = palwrldcmdsgo.Info(IPAddress, password)
@@ -44,25 +63,24 @@ func main() {
 	case "showplayers":
 		response = palwrldcmdsgo.ShowPlayers(IPAddress, password)
 	case "shutdown":
-		if len(args) > 2 {
-			subcommand = strings.ToLower(os.Args[2])
-		}
-		switch subcommand {
+		switch arg1 {
 		case "now":
 			response = `===STARTING FORCE SHUTDOWN OF SERVER===\n` + palwrldcmdsgo.DoExit(IPAddress, password) + `===FORCE SHUTDOWN COMPLETE=== Please stop the systemd service to stop a server restart.`
 		default:
-			response = palwrldcmdsgo.Shutdown(IPAddress, password, os.Args[2], os.Args[3]) + `\nNote: Please stop the systemd srevice to stop a server restart.`
+			response = palwrldcmdsgo.Shutdown(IPAddress, password, arg1, arg2) + `Note: Please stop the systemd srevice to stop a server restart.`
 		}
 	case "teleporttome":
 		response = "Can only be done by an admin playing the game."
 	case "teleporttoplayer":
 		response = "Can only be done by an admin playing the game."
-	default:
+	case "man", "help":
 		dat, err := os.ReadFile("man")
 		if err != nil {
 			panic(err)
 		}
-		fmt.Print(string(dat))
+		fmt.Print(string(dat), "\n")
+	default:
+		fmt.Print("palworldcli <IPAddress:RCONPort> <AdminPassword> <command> <args>", "\nUse command man or help for more info.\n")
 	}
 	fmt.Printf(response)
 }
