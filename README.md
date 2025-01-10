@@ -78,7 +78,7 @@ Gracefully shuts down the Palserver. A timer (seconds) is started before the shu
 
 Force stops the Palserver. 
 
-_Note: If running the server as a systemd process on Linux, the server will restart. It's recommended to run `systemctl stop <palworld_service_name.service>` after a `shutdown` command was used._
+_Note: If running the server as a systemd process on Linux, the server will restart if the Restart option is included. Remove that option or run `systemctl stop <palworld_service_name.service>` after a `shutdown` command was used._
 
     teleporttome <steamID>
 Teleports a player to the admin. The steamID must be known. Run `showplayers` to get a list of current logged in players and their steamIDs. **This is not supported through Palworld's steamCMDs. The admin must be a logged in player to perform this command.**
