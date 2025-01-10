@@ -1,7 +1,9 @@
 module github.com/JengaMasterG/palwrldcli
 
-go 1.21.6
+go 1.23
+
+toolchain go1.23.1
 
 require github.com/JengaMasterG/palwrldcmdsgo v1.0.1
 
-require github.com/gorcon/rcon v1.3.5 // indirect
+require github.com/gorcon/rcon v1.4.0 // indirect
