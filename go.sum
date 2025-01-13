@@ -1,4 +1,6 @@
 github.com/JengaMasterG/palwrldcmdsgo v1.0.1 h1:VoyGIZfg/want8bkjkQNhcgU+mZxviiPKnVhRzUgW8I=
 github.com/JengaMasterG/palwrldcmdsgo v1.0.1/go.mod h1:cNndvCx7z+zLFYafrwbyn0VRhuDqmhXWRsaxtxPI3zs=
+github.com/JengaMasterG/palwrldcmdsgo v1.1.0 h1:EKRdTqcmNEjVloH0Qq986clqVZ22C9MfdNpqEAPUZdQ=
+github.com/JengaMasterG/palwrldcmdsgo v1.1.0/go.mod h1:cNndvCx7z+zLFYafrwbyn0VRhuDqmhXWRsaxtxPI3zs=
 github.com/gorcon/rcon v1.4.0 h1:pYwZ8Rhcgfh/LhdPBncecuEo5thoFvPIuMSWovz1FME=
 github.com/gorcon/rcon v1.4.0/go.mod h1:M6v6sNmr/NET9YIf+2rq+cIjTBridoy62uzQ58WgC1I=

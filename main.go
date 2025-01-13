@@ -18,6 +18,7 @@ func main() {
 	arg1 := ""
 	arg2 := ""
 	response := ""
+	var err error
 
 	switch argsLen {
 	case 1:
@@ -47,9 +48,9 @@ func main() {
 	case "player":
 		switch arg1 {
 		case "ban":
-			response = palwrldcmdsgo.BanPlayer(IPAddress, password, arg1)
+			response, err = palwrldcmdsgo.BanPlayer(IPAddress, password, arg1)
 		case "kick":
-			response = palwrldcmdsgo.KickPlayer(IPAddress, password, arg1)
+			response, err = palwrldcmdsgo.KickPlayer(IPAddress, password, arg1)
 		default:
 			response = "Usage:\n player ban <steamID>\n player kick <steamID>\nNote: use the showplayers command to view active player's steamIDs."
 		}
@@ -57,17 +58,17 @@ func main() {
 		palwrldcmdsgo.Broadcast(IPAddress, password, arg1)
 		response = "Message Broadcasted on server."
 	case "info":
-		response = palwrldcmdsgo.Info(IPAddress, password)
+		response, err = palwrldcmdsgo.Info(IPAddress, password)
 	case "save":
-		response = palwrldcmdsgo.Save(IPAddress, password)
+		response, err = palwrldcmdsgo.Save(IPAddress, password)
 	case "showplayers":
-		response = palwrldcmdsgo.ShowPlayers(IPAddress, password)
+		response, err = palwrldcmdsgo.ShowPlayers(IPAddress, password)
 	case "shutdown":
 		switch arg1 {
 		case "now":
-			response = `===STARTING FORCE SHUTDOWN OF SERVER===\n` + palwrldcmdsgo.DoExit(IPAddress, password) + `===FORCE SHUTDOWN COMPLETE===\n`
+			response, err = palwrldcmdsgo.DoExit(IPAddress, password)
 		default:
-			response = palwrldcmdsgo.Shutdown(IPAddress, password, arg1, arg2)
+			response, err = palwrldcmdsgo.Shutdown(IPAddress, password, arg1, arg2)
 		}
 	case "teleporttome":
 		response = "Can only be done by an admin playing the game."
@@ -82,5 +83,9 @@ func main() {
 	default:
 		fmt.Print("palworldcli <IPAddress:RCONPort> <AdminPassword> <command> <args>", "\nUse command man or help for more info.\n")
 	}
-	fmt.Printf(response)
+	if err != nil {
+		fmt.Print("WARN:", err, "\n")
+	} else {
+		fmt.Print("INFO: ", response)
+	}
 }
